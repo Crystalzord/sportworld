@@ -1,0 +1,42 @@
+version: '3'
+services:
+  sw-config-server:
+    container_name: sw-config-server
+    image: sw-config-server
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/Dockerfile-sw-config-server
+    ports:
+      - "8888:8888"
+  sw-eureka-peer1:
+    container_name: sw-eureka-peer1
+    image: sw-eureka
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/Dockerfile-sw-eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=peer1
+    ports:
+      - "8761:8761"
+  sw-eureka-peer2:
+    depends_on:
+      - sw-eureka-peer1
+    container_name: sw-eureka-peer2
+    image: sw-eureka
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/Dockerfile-sw-eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=peer2
+    ports:
+      - "8762:8762"
+  sw-sportservice:
+    depends_on:
+      - sw-eureka-peer1
+    container_name: sw-sportservice
+    image: sw-sportservice
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/Dockerfile-sw-sportservice
+    ports:
+      - "8080:8080"

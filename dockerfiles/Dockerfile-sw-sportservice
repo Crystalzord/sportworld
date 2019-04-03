@@ -1,0 +1,6 @@
+FROM openjdk:8-jre-alpine
+COPY modules/sw-sportservice/build/libs/sw-sportservice.jar /opt/sw-sportservice.jar
+COPY scripts/sportservice-delay-start.sh /opt/sportservice-delay-start.sh
+RUN chmod 755 /opt/sportservice-delay-start.sh
+WORKDIR /opt
+ENTRYPOINT ["sh", "sportservice-delay-start.sh"]

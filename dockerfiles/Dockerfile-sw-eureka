@@ -1,0 +1,5 @@
+FROM openjdk:8-jre-alpine
+COPY modules/sw-eureka/build/libs/sw-eureka.jar /opt/sw-eureka.jar
+COPY scripts/eureka-delay-start.sh /opt/eureka-delay-start.sh
+WORKDIR /opt
+ENTRYPOINT ["sh", "eureka-delay-start.sh"]

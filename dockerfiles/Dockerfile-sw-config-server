@@ -1,0 +1,3 @@
+FROM openjdk:8-jre-alpine
+COPY modules/sw-config-server/build/libs/sw-config-server.jar /opt/sw-config-server.jar
+CMD exec java -jar /opt/sw-config-server.jar 

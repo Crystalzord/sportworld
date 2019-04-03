@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: sw-sportservice
+  cloud:
+    config:
+      uri: http://sw-config-server:8888

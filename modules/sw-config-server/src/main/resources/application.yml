@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://sw-eureka-peer1:8761/eureka, http://sw-eureka-peer2:8762/eureka
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Crystalzord/sportworld
+          searchPaths: config
+
+  application:
+    name: sw-config-server
+
+server:
+  port: 8888
